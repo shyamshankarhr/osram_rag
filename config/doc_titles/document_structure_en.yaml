@@ -1,0 +1,50 @@
+technical_data:
+    title: Technical data
+    parts:
+        electrical_data:
+            title: Electrical data
+            parts:
+                nominal_current: Nominal current
+                current_control_range: Current control range
+                nominal_wattage: Nominal wattage
+                nominal_voltage: Nominal voltage
+        dimensions_weight:
+            title: Dimensions & weight
+            parts:
+                diameter: Diameter
+                length: Length
+                length_base: Length with base excl. base pins\/connection
+                light_center_length: Light center length \(LCL\)
+                cable_length_input: Cable/wire length, input side
+                electrode_gap_cold: Electrode gap cold
+                product_weight: Product weight
+                wire_length: Cable length
+        temperature_operating_conditions:
+            title: Temperatures & operating conditions
+            parts:
+                max_ambient_temperature: Max. permitted ambient temp. pinch point
+        lifespan:
+            title: Lifespan
+            parts:
+                lifespan: Lifespan
+                service_warranty: Service Warranty Lifetime 
+        additional_product_data:
+            title: Additional product data
+            parts:
+                base_anode: Base anode \(standard designation\)
+                base_cathode: Base cathode \(standard designation\)
+                product_remark: Product remark
+        capabilities:
+            title: Capabilities
+            parts:
+                cooling: Cooling
+                burning_position: Burning position
+        environmental_info:
+            title: Environmental information
+            parts:
+                date_declaration: Date of Declaration
+                article_identifier: Primary Article Identifier
+                candidatate_substance_1: Candidate List Substance 1
+                cas_substance_1: CAS No. of substance 1
+                safe_use_instruction: Safe Use Instruction
+                declaration_no: Declaration No. in SCIP database

@@ -1,0 +1,50 @@
+technische_daten:
+    title: Technische Daten
+    parts:
+        elektrische_daten:
+            title: Elektrische Daten
+            parts:
+                nennstrom: Nennstrom
+                stromsteuerbereich: Stromsteuerbereich
+                nennleistung_wattzahl: Nennleistung
+                nennspannung: Nennspannung
+        abmessungen_gewicht:
+            title: Abmessungen & Gewicht
+            parts:
+                durchmesser: Durchmesser
+                länge: Länge
+                länge_sockel: Länge mit Sockel jedoch ohne Sockelstift
+                abstand_lichtschwerpunkt: Abstand Lichtschwerpunkt \(LCL\)
+                kabellänge_eingangsseite: Kabel-/Leitungslänge, Eingangsseite
+                elektrodenabstand_kalt: Elektrodenabstand kalt
+                produktgewicht: Produktgewicht
+                kabellänge: Kabellänge
+        temperaturen_betriebsbedingungen:
+            title: Temperaturen & Betriebsbedingungen
+            parts:
+                max_umgebungstemperatur: Max. zulässige Umgebungstemp. Quetschung 
+        lebensdauer:
+            title: Lebensdauer
+            parts:
+                lebensdauer: Lebensdauer
+                lebenslange_servicegarantie: Service Warranty Lifetime 
+        zusätzliche_produktdaten:
+            title: Zusätzliche Produktdaten
+            parts:
+                sockel_anode : Sockel Anode \(Normbezeichnung\)
+                sockel_kathode: Sockel Kathode \(Normbezeichnung\)
+                anmerkung_produkt: Anmerkung zum Produkt
+        einsatzmöglichkeiten:
+            title: Einsatzmöglichkeiten
+            parts:
+                kühlung: Kühlung
+                brennstellung: Brennstellung
+        umwelt_informationen:
+            title: Umwelt Informationen
+            parts:
+                datum_deklaration: Datum der Deklaration
+                primäre_erzeugnisnummer: Primäre Erzeugnisnummer
+                stoff_kandidatenliste_1: Stoff der Kandidatenliste 1
+                cas_stoffes_1: CAS Nr. des Stoffes 1 
+                info_sicheren_gebrauch: Informationen zum sicheren Gebrauch
+                scip_deklarationsnummer: SCIP Deklarationsnummer
