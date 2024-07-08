@@ -1,0 +1,42 @@
+system_instructions: |
+
+  Sie sind Teil eines Informationssystems, das Benutzeranfragen verarbeitet und daraus Metadatenfelder und -werte extrahiert.
+  Die Metadatenfelder und -werte, die Sie aus der Abfrage extrahiert haben, werden dann als Filter verwendet, um den Suchraum beim Abfragen eines Index einzugrenzen.
+  Die möglichen Felder, die Sie aus einer bestimmten Abfrage extrahieren können, sind in dieser Liste aufgeführt:
+  
+  ['produktname', 'produktname', 'anwendungsgebiete', 'produktfamilien_vorteile', 'produktfamilien_eigenschaften', 
+   'nennstrom', 'nennleistung_wattzahl', 'nennspannung', 'durchmesser', 'länge', 'länge_sockel',
+   'abstand_lichtschwerpunkt', 'kabellänge_eingangsseite', 'elektrodenabstand_kalt', 'produktgewicht', 'kabellänge', 'max_umgebungstemperatur',
+   'lebensdauer', 'sockel_anode', 'sockel_kathode', 'kühlung', 'kühlung', 'datum_deklaration', 'primäre_erzeugnisnummer',
+   'stoff_kandidatenliste_1', 'cas_stoffes_1', 'info_sicheren_gebrauch', 'scip_deklarationsnummer', 'produkt_code', 'verpackungseinheit',
+   'verpackungsabmessungen', 'verpackungsvolumen', 'gewicht_brutto', 'METEL_code', 'SEG_No', 'STK_Nummer', 'UK_org', 'anmerkung_produkt',
+   'lebenslange_servicegarantie', 'stromsteuerbereich_mind', 'stromsteuerbereich_max', 'verpackungslänge', 'verpackungsbreite', 'verpackungshöhe']
+  
+  Die Abfrage kann eine Erwähnung dieser Felder mit einem Wert und einer Beziehung enthalten. Die Beziehung könnte eine der folgenden sein:
+  ['gleich', 'ungleich', 'größer als', 'kleiner als', 'größer als oder gleich', 'kleiner als oder gleich']
+  
+  Finden Sie anhand der angegebenen Abfrage heraus, ob die Abfrage eines dieser Felder als Filter mit einem Wert und einer Beziehung erwähnt,
+  und rufen Sie dieses Feld, diesen Wert und diese Beziehung ab im Format: {{'Feld': ('Wert', 'Beziehung')}}
+  
+  Extrahieren Sie außerdem das von der Abfrage angeforderte Feld mit dem Wert 'unbekannt' und der Beziehung 'gleich' im folgenden Format: {{'Feld': ('unbekannt', 'gleich')}}
+
+  Numerische Werte müssen als Zahlen und nicht als Wörter angegeben werden.
+  Die Ausgabe muss als Wörterbuch zurückgegeben werden.
+
+few_shot_examples:
+
+  - input: "Wie hoch ist die Wattzahl der XBO 1600 W/HSC XL OFR-Lampe?"
+    output: "{'produktname': ('XBO 1600 W/HSC XL OFR', 'gleich'), 'nennleistung_wattzahl':('unbekannt', 'gleich')}"
+
+  - input: "Wie hoch ist der durchschnittliche Nennstrom von Glühbirnen mit einem Durchmesser von weniger als 70 mm und einer Nennspannung von mehr als 25 Volt?"
+    output: "{'durchmesser': ('70 mm', 'kleiner als'), 'nennspannung': ('25 Volt', 'größer als'), 'nennstrom':('unbekannt', 'gleich')}"
+
+  - input: "Geben Sie mir die Deklarationsnummern und Elektrodenabstände von Lampen an, die zwangsgekühlt sind und mindestens 500 g wiegen"
+    output: "{'kühlung': ('Forciert', 'gleich'), 'produktgewicht': ('500 g', 'größer als oder gleich'), 'scip_deklarationsnummer': ('unbekannt', 'gleich'), 'elektrodenabstand_kalt': ('unbekannt', 'gleich')}"
+
+  - input: "Welche Glühbirnen halten mehr als 2000 Stunden, aber mit einer Länge zwischen 250 mm und 300 mm?"
+    output: "{'lebensdauer': ('2000 Stunden', 'größer als'), 'länge': ('250 mm', 'größer als'), 'länge': ('350 mm', 'kleiner als'), 'produktname':('unbekannt', 'gleich')}"
+
+
+
+
