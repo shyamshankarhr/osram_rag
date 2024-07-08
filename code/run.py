@@ -6,6 +6,7 @@ import data_cleaner
 from llm_agents.query_parser import QueryParser
 from llm_agents.data_retriever import DataRetriever
 from llm_agents.answer_synthesizer import AnswerSynthesizer
+import sys
 
 
 DATA_FILE_LOCATION = './../data/datafiles/'   # path containing the data files
@@ -24,24 +25,7 @@ QUERY_PROMPT_PATH = os.path.join(script_dir, QUERY_PROMPT_PATH)
 API_KEY_PATH = os.path.join(script_dir, API_KEY_PATH)
 
 
-if __name__ == '__main__':
-
-    print('Loading OSRAM-Chatbot')
-
-    # Download english versions if not present
-    if not os.path.exists(EN_DATA_FILE_LOCATION):
-          english_downloader.download_english_versions(DATA_FILE_LOCATION, EN_DATA_FILE_LOCATION)
-    DATA_FILE_LOCATION = EN_DATA_FILE_LOCATION
-    
-    # Parse datafiles into dataframe
-    pdf_parser = PDFParser(DATA_FILE_LOCATION, DOCUMENT_STRUCTURE_PATH)
-    data_df = pdf_parser.get_full_dataframe()
-    
-    # Cleaning data to normalize numeric values
-    data_df = data_cleaner.clean_data(data_df)
-    
-    #  --- Starting chat ---
-    user_query = input("Welcome to OSRAM Chatbot! How can I help you today?\n")
+def run_chat(user_query):
 
     # Query parsing
     query_parser = QueryParser(QUERY_PROMPT_PATH, API_KEY_PATH)
@@ -58,7 +42,49 @@ if __name__ == '__main__':
         print('Retrieved data: \n%s' %str(retrieved_data))
     
     # Answer synthesis
-    answer_synthesizer = AnswerSynthesizer(retrieved_data, API_KEY_PATH, VERBOSE)
-    answer = answer_synthesizer.synthesize_answer(user_query)
+    try:
+        answer_synthesizer = AnswerSynthesizer(retrieved_data, API_KEY_PATH, VERBOSE)
+        answer = answer_synthesizer.synthesize_answer(user_query)
+    except:
+        print('Error in synthesizing response. Here is the raw result:\n')
+        answer = str(retrieved_data)  # error in synthesizing response
+
+    return answer
+
+if __name__ == '__main__':
+
+    print('Loading OSRAM-Chatbot')
+
+    # Ensure Openai key file is present
+    if not os.path.isfile(API_KEY_PATH):
+        print('Please add openai api key file at config/api_keys/openai_key.txt')
+        sys.exit(0)
+
+    # Download english versions if not present
+    if not os.path.exists(EN_DATA_FILE_LOCATION):
+          english_downloader.download_english_versions(DATA_FILE_LOCATION, EN_DATA_FILE_LOCATION)
+    DATA_FILE_LOCATION = EN_DATA_FILE_LOCATION
     
+    # Parse datafiles into dataframe
+    pdf_parser = PDFParser(DATA_FILE_LOCATION, DOCUMENT_STRUCTURE_PATH)
+    data_df = pdf_parser.get_full_dataframe()
+    
+    # Cleaning data to normalize numeric values
+    data_df = data_cleaner.clean_data(data_df)
+    
+    #  --- Starting chat ---
+    user_query = input("Welcome to OSRAM Chatbot! How can I help you today?\n")
+    answer = run_chat(user_query)
     print(answer)
+
+    try:
+        user_query = input("\nWould you like to know anything more? (You can enter 'exit' to quit)\n")
+        while user_query.lower() != 'exit':
+            answer = run_chat(user_query)
+            print(answer)
+            user_query = input("\nWould you like to know anything more? (You can enter 'exit' to quit)\n")
+
+    except KeyboardInterrupt as e:
+        print('\nExiting the chat')
+
+    print('\nThanks for using OSRAM-Chatbot!')
