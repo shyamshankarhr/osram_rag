@@ -13,4 +13,4 @@ Chatbot based on OSRAM product specifications
 
 ### Data Flow
 
-![image](https://github.com/shyamshankarhr/osram_rag/assets/18327103/859c1d76-e857-466b-8f0a-616ee802309a)
+![image](https://github.com/shyamshankarhr/osram_rag/blob/7bb4ed7465e8fe396865185334e2d135c2dc1863/diagrams/Code%20flow.svg)
